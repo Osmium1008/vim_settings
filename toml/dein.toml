@@ -1,0 +1,207 @@
+[[plugins]]
+repo = 'Shougo/dein.vim'
+hook_add = '''
+let g:dein#auto_recache = 1
+'''
+
+[[plugins]]
+repo = 'vim-airline/vim-airline'
+hook_add = '''
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#wordcount#enabled = 0
+let g:airline#extensions#default#layout = [['a', 'b', 'c'], ['x', 'y', 'z']]
+let g:airline_section_c = '%t'
+let g:airline_section_x = '%{&filetype}'
+let g:airline_section_z = '%3l:%2v %{airline#extensions#ale#get_warning()} %{airline#extensions#ale#get_error()}'
+let g:airline#extensions#default#section_truncate_width = {}
+let g:airline#extensions#whitespace#enabled = 1
+let g:airline_powerline_fonts = 1
+set laststatus=2
+'''
+
+[[plugins]]
+repo = 'vim-airline/vim-airline-themes'
+hook_add = '''
+let g:airline_theme = 'bubblegum'
+'''
+
+[[plugins]]
+repo = 'dense-analysis/ale'
+hook_add = '''
+let g:airline#extensions#ale#error_symbol = ' '
+let g:airline#extensions#ale#warning_symbol = ' '
+let g:airline#extensions#ale#open_lnum_symbol = '('
+let g:airline#extensions#ale#close_lnum_symbol = ')'
+let g:ale_lint_on_text_changed = 0
+let g:ale_sign_error = ''
+let g:ale_sign_warning = ''
+let g:ale_echo_msg_format = '[%linter%]%code: %%s'
+highlight link ALEErrorSign Tag
+highlight link ALEWarningSign StorageClass
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
+'''
+
+[[plugins]]
+repo = 'ryanoasis/vim-devicons'
+hook_add = '''
+  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {}
+  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['html'] = ''
+  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['css'] = ''
+  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['md'] = ''
+  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['txt'] = ''
+  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['erb'] = ''
+  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['slim'] = ''
+  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['scss'] = ''
+  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['sass'] = ''
+  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['js'] = ''
+  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['coffee'] = ''
+  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['rb'] = ''
+'''
+
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+hook_add = '''
+  let g:airline#extensions#branch#enabled = 1
+  nnoremap [fugitive]  <Nop>
+  nmap <space>g [fugitive]
+  nnoremap <silent> [fugitive]s :Gstatus<CR><C-w>T
+  nnoremap <silent> [fugitive]a :Gwrite<CR>
+  nnoremap <silent> [fugitive]c :Gcommit-v<CR>
+  nnoremap <silent> [fugitive]b :Gblame<CR>
+  nnoremap <silent> [fugitive]p :Gpull<CR>
+  nnoremap <silent> [fugitive]d :Gdiff<CR>
+  nnoremap <silent> [fugitive]m :Gmerge<CR>
+'''
+
+[[plugins]]
+repo = 'junegunn/fzf'
+dir = '~/.fzf'
+build = './install --bin'
+
+[[plugins]]
+repo = 'junegunn/fzf.vim'
+
+[[plugins]]
+repo = 'wakatime/vim-wakatime'
+
+[[plugins]]
+repo = 'simeji/winresizer'
+hook_add = '''
+let g:winresizer_horiz_resize = 1
+let g:winresizer_vert_resize = 1
+'''
+
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete.vim'
+hook_add = '''
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
+'''
+
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete-buffer.vim'
+hook_add = '''
+call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
+    \ 'name': 'buffer',
+    \ 'whitelist': ['*'],
+    \ 'blacklist': ['go'],
+    \ 'completor': function('asyncomplete#sources#buffer#completor'),
+    \ 'config': {
+    \    'max_buffer_size': 5000000,
+    \  },
+    \ }))
+'''
+
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete-file.vim'
+hook_add = '''
+au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
+    \ 'name': 'file',
+    \ 'whitelist': ['*'],
+    \ 'priority': 10,
+    \ 'completor': function('asyncomplete#sources#file#completor')
+    \ }))
+'''
+
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete-necosyntax.vim'
+depends = ['neco-syntax']
+hook_add = '''
+au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#necosyntax#get_source_options({
+    \ 'name': 'necosyntax',
+    \ 'whitelist': ['*'],
+    \ 'completor': function('asyncomplete#sources#necosyntax#completor'),
+    \ }))
+'''
+
+[[plugins]]
+repo='Shougo/neco-syntax'
+
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete-neosnippet.vim'
+depends = ['neosnippet.vim']
+hook_add = '''
+call asyncomplete#register_source(asyncomplete#sources#neosnippet#get_source_options({
+\ 'name': 'neosnippet',
+\ 'whitelist': ['*'],
+\ 'completor': function('asyncomplete#sources#neosnippet#completor'),
+\ }))
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+'''
+
+[[plugins]]
+repo = 'Shougo/neosnippet.vim'
+depends = 'neosnippet-snippets'
+hook_add = '''
+  inoremap <expr> <S-TAB> pumvisible() ? '<C-p>' : '<S-TAB>'
+
+  imap <C-k> <Plug>(neosnippet_expand_or_jump)
+  smap <C-k> <Plug>(neosnippet_expand_or_jump)
+
+  imap <expr> <TAB> neosnippet#jumpable() ? '<Plug>(neosnippet_expand_or_jump)' : pumvisible() ? '<C-n>' : '<TAB>'
+  smap <expr> <TAB> neosnippet#jumpable() ? '<Plug>(neosnippet_expand_or_jump)' : '<TAB>'
+
+  let g:neosnippet#data_directory = expand('~/_vim/.neosnippet')
+
+  let g:neosnippet#snippets_directory = [
+        \   '~/vimfiles/snippets',
+        \   '~/_vim/dein/repos/github.com/honza/vim-snippets/snippets/',
+        \ ]
+'''
+
+[[plugins]]
+repo = 'Shougo/neosnippet-snippets'
+
+[[plugins]]
+repo = 'honza/vim-snippets'
+rtp = ''
+
+[[plugins]]
+repo = 'prabirshrestha/async.vim'
+
+[[plugins]]
+repo='prabirshrestha/vim-lsp'
+hook_add='''
+let g:lsp_signs_enabled = 1         " enable signs
+let g:lsp_diagnostics_echo_cursor = 1 " enable echo under cursor when in normal mode
+
+let g:lsp_signs_error = {'text': '✗'}
+let g:lsp_signs_warning = {'text': '‼'}
+'''
+
+[[plugins]]
+repo='mattn/vim-lsp-settings'
+
+[[plugins]]
+repo='mattn/vim-lsp-icons'
+
+[[plugins]]
+repo='prabirshrestha/asyncomplete-lsp.vim'
+
+[[plugins]]
+repo = 'parkr/vim-jekyll'
+

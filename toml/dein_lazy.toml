@@ -1,0 +1,57 @@
+[[plugins]]
+repo = 'cespare/vim-toml'
+on_ft = 'toml'
+
+[[plugins]]
+repo = 'dhruvasagar/vim-table-mode'
+on_ft = ['markdown', 'mkd']
+hook_add = '''
+let g:table_mode_corner = '|'
+'''
+
+[[plugins]]
+repo = 'roxma/nvim-yarp'
+if = '''!has('nvim')'''
+
+[[plugins]]
+repo = 'roxma/vim-hug-neovim-rpc'
+if = '''!has('nvim')'''
+
+[[plugins]]
+repo = 'preservim/nerdtree'
+on_cmd = [
+    'NERDTree'
+]
+hook_add = '''
+let g:NERDTreeQuitOnOpen=1
+let g:NERDTreeShowHidden=1
+'''
+
+[[plugins]]
+repo = 'Xuyuanp/nerdtree-git-plugin'
+on_source = ['needtree']
+
+[[plugin]]
+repo = 'prabirshrestha/asyncomplete-necovim.vim'
+on_ft = ['vim']
+depends = ['neco-vim']
+hook_source = '''
+  autocmd vimrc User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#necovim#get_source_options({
+      \ 'name': 'necovim',
+      \ 'whitelist': ['vim'],
+      \ 'priority': 10,
+      \ 'completor': function('asyncomplete#sources#necovim#completor'),
+      \ }))
+'''
+
+[[plugins]]
+repo = 'Shougo/neco-vim'
+lazy = 1
+
+[[plugins]]
+repo = 'kana/vim-smartinput'
+on_i=1
+
+[[plugins]]
+repo = 'plasticboy/vim-markdown'
+on_ft = ['markdown','mkd']
