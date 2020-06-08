@@ -22,7 +22,7 @@ set laststatus=2
 [[plugins]]
 repo = 'vim-airline/vim-airline-themes'
 hook_add = '''
-let g:airline_theme = 'bubblegum'
+let g:airline_theme = 'night_owl'
 '''
 
 [[plugins]]
