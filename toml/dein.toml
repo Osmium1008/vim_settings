@@ -26,6 +26,16 @@ let g:airline_theme = 'night_owl'
 '''
 
 [[plugins]]
+repo = 'haishanh/night-owl.vim'
+hook_add = '''
+if(has("termguicolors"))
+    set termguicolors
+endif
+
+colorscheme night-owl
+'''
+
+[[plugins]]
 repo = 'dense-analysis/ale'
 hook_add = '''
 let g:airline#extensions#ale#error_symbol = ' '

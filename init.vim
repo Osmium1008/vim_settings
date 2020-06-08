@@ -16,7 +16,6 @@ nnoremap <down> gj
 nnoremap <up> gk
 inoremap jk <ESC>
 
-colorscheme ron
 syntax enable
 
 let g:termdebug_wide=163
