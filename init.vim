@@ -22,7 +22,6 @@ let g:termdebug_wide=163
 let mapleader = " "
 
 " read toml
-let s:dein_config_dir = $XDG_CONFIG_HOME . '/vim_settings/toml'
 let s:dein_cache_dir = $XDG_CACHE_HOME . '/dein'
 
 if &compatible
@@ -38,8 +37,8 @@ set runtimepath+=$XDG_CACHE_HOME/dein/repos/github.com/Shougo/dein.vim
 if dein#load_state(s:dein_cache_dir)
 	call dein#begin(s:dein_cache_dir)
 
-	let s:toml      = s:dein_config_dir . '/dein.toml'
-	let s:lazy_toml = s:dein_config_dir . '/dein_lazy.toml'
+	let s:toml      =  './toml/dein.toml'
+	let s:lazy_toml =  './toml/dein_lazy.toml'
 
 	call dein#load_toml(s:toml, {'lazy': 0})
 	call dein#load_toml(s:lazy_toml , {'lazy': 1})
