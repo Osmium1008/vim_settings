@@ -9,6 +9,16 @@ set cursorline
 set whichwrap=b,s,h,l,<,>,[,],~
 set hidden
 set clipboard+=unnamedplus
+set nobackup
+set nowritebackup
+set updatetime=300
+set shortmess+=c
+
+if has("patch-8.1.1564")
+  set signcolumn=number
+else
+  set signcolumn=yes
+endif
 
 nnoremap j gj
 nnoremap k gk
@@ -37,8 +47,10 @@ set runtimepath+=$XDG_CACHE_HOME/dein/repos/github.com/Shougo/dein.vim
 if dein#load_state(s:dein_cache_dir)
 	call dein#begin(s:dein_cache_dir)
 
-	let s:toml      =  './toml/dein.toml'
-	let s:lazy_toml =  './toml/dein_lazy.toml'
+    let s:setting_dir = expand('<sfile>:p:h')
+
+	let s:toml      =  s:setting_dir . '/toml/dein.toml'
+	let s:lazy_toml =  s:setting_dir . '/toml/dein_lazy.toml'
 
 	call dein#load_toml(s:toml, {'lazy': 0})
 	call dein#load_toml(s:lazy_toml , {'lazy': 1})
