@@ -71,6 +71,21 @@ hook_add = '''
 repo = 'junegunn/fzf'
 dir = '~/.fzf'
 build = './install --bin'
+hook_add = '''
+fun! FzfOmniFiles()
+  let is_git = system('git status')
+  if v:shell_error
+    :Files
+  else
+    :GitFiles
+  endif
+endfun
+ 
+nnoremap <C-b> :Buffers<CR>
+nnoremap <C-g> :Rg<Space>
+nnoremap <leader><leader> :Commands<CR>
+nnoremap <C-p> :call FzfOmniFiles()<CR>
+'''
 
 [[plugins]]
 repo = 'junegunn/fzf.vim'
